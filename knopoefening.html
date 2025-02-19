@@ -1,0 +1,44 @@
+!<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery Oefening</title>
+
+        <style>
+        .highlight {
+            color: blue;
+        }
+        </style>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+
+    </head>
+    <body>
+        <h2 id="hoofdtitel">Welkom bij de oefening</h2>
+        <p id="tekst">Klik op een knop om deze tekst te veranderen.</p>
+        <button id="knop1">Verander tekst</button>
+        <button id="knop2">Maak tekst blauw</button>
+        <button id="knop3">Reset tekst</button>
+
+        <script>
+        $(document).ready(function() {
+            const origineleTekst = $("#tekst").text();
+
+            $("#knop1").click(function() {
+                $("#tekst").text("De tekst is veranderd!");
+            });
+
+            $("#knop2").click(function() {
+                $("#tekst").addClass("highlight");
+            });
+
+            $("#knop3").click(function() {
+                $("#tekst").removeClass("highlight");
+                $("#tekst").text(origineleTekst);
+            });
+        });
+    </script>
+    </body>
+</html>

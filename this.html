@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+    </head>
+
+    <body>
+        <button>Klik op mij en kijk in de console wat er verschijnt !</button>
+        <button>knop 1</button>
+        <button>knop 2</button>
+        <button>knop 3</button>
+
+        <script>
+        $(document).ready(function() {
+            $button = $("button");   //burda$('button') =>tum buttonlar demek
+                                    //burda variable olusturarak buttonlarin secilmesini sagliyorz
+            $button.click(function() { // bunu spesifik hale getirmek icin "this" ifadesi kullaniliyor
+                console.log(this.text()); //dit is JQuery opvragen
+            });
+
+            $button.mouseover(function(){
+            $(this).css('color','#ffffff');
+            });
+
+            $button.mouseout(function(){
+            $(this).css('color','#000000');
+            });
+
+            
+            
+
+        });
+</script>
+
+    </body>
+</html>

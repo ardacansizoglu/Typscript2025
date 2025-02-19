@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulier Interactie</title>
+        <style>
+        .highlight {
+            color: green;
+        }
+        
+        .yellow-background {
+            background-color: yellow;
+        }
+    </style>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <h2>Formulier Interactie</h2>
+        <input type="text" id="naamInput" placeholder="Type hier iets">
+        <button id="toonTekst">Toon tekst</button>
+        <p id="resultaat"></p>
+
+        <script>
+        $(document).ready(function() { //haakje openen, document schrijven, punt, haakje, gekruld,
+                                        //Deze regel definieert een functie die wordt uitgevoerd zodra het document volledig is geladen.
+            // jQuery selecties in variabelen 
+            // Deze variabelen zijn jQuery-selectors die toegang geven tot HTML-elementen.
+            let $naamInput = $('#naamInput');  //AANHALINGSTEKENS ='' =tirnak isareti
+            let $toonTekstBtn = $('#toonTekst');
+            let  $resultaat = $('#resultaat');
+
+            // Klik event voor de knop
+            //Deze regel definieert een functie die wordt uitgevoerd wanneer er op de #toonTekst knop wordt geklikt.
+            $toonTekstBtn.click(function() {   ///dit is JQuery opvragen
+                let ingevoerdeTekst = $naamInput.val();
+        //Deze regel haalt de tekst op die is ingevoerd in het #naamInput invoerveld en 
+        // slaat deze op in de ingevoerdeTekst variabele.
+                    $resultaat.text(ingevoerdeTekst);
+            });
+
+            // Focus event (cursor in inputveld)
+            $naamInput.focus(function() {
+                $($naamInput).addClass('yellow-background'); //$($naamInput)=> bunun yerine "this" de yazabilirsin
+            });                                              // $($naamInput) = this
+
+            // Blur event (cursor verlaat inputveld)
+            $naamInput.blur(function() {
+                $($naamInput).removeClass('yellow-background');//burda css kullanmadanda yapabilirsin
+                                                            //'highligt' da yazabilirsin
+            });
+            //Deze regel definieert een functie die wordt uitgevoerd wanneer het blur-event 
+            //plaatsvindt op het #naamInput element. Het blur-event treedt op wanneer de gebruiker het #naamInput element verlaat (de cursor verplaatst zich naar een ander element).
+        });
+    </script>
+    </body>
+</html>

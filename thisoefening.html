@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+
+
+        </style>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+    </head>
+
+    <body>
+        <h2>Klik op een item</h2>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+
+        <p id="resultaat">De tekst van het item komt hier...</p>
+
+        <script>
+        $(document).ready(function() {
+            let $li = $('li');
+            let resultaat = $('#resultaat');
+
+            //Klick event voor list items
+
+        $li.click(function() {//Dit creëert een event listener voor het 'click' event op alle lijst-items
+                                    //Wanneer een gebruiker op een lijst-item klikt,
+                                    // wordt de functie uitgevoerd
+           //this=> verwijst naar het HTML element waarop geklikt is (het lijst-item)
+                                            //$(this)=> maakt een jQuery object van dat element
+                                            //.text() haalt de tekstinhoud uit dat element
+            
+            $resultaat.text($(this).text());  //$resultaat verwijst naar het <p id="resultaat"> element
+                                        //.text(itemText) verandert de tekst van dit element naar de tekst die we hebben opgehaald
+        });
+         // Mouseenter event (muis gaat over item)
+        $li.on('mouseenter', function() {
+            $(this).css('background-color', 'yellow');
+        });
+
+        $li.on('mouseleave', function() {
+            $(this).css('background-color', 'yellow');
+        });
+    });
+    
+
+</script>
+
+    </body>
+</html>

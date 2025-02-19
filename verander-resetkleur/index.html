@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verander - Reset Kleur</title>
+        <link rel="stylesheet" href="verander.css">
+    </head>
+
+    <body>
+        <h2>Geef een kleur in en verander de achtergrond</h2>
+        <input type="text" id="kleurInput" placeholder="bv. blue, red, #ffcc00">
+        <button id="veranderKleur">Verander achtergrond</button>
+        <button id="resetKleur">Reset achtergrond</button>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+
+        <script>
+            $(document).ready(function() {
+                                        // jQuery selecties in variabelen
+                let $kleurInput = $('#kleurInput');
+                let $veranderKleur = $('#veranderKleur');
+                let $resetKleur = $('#resetKleur');
+                let $body = $('body');
+
+            // Klik event voor veranderen van kleur
+            //Wanneer er op het #veranderKleur element wordt geklikt, 
+            // wordt de nieuwe kleur uit het invoerveld gehaald en wordt de achtergrondkleur van het body element aangepast aan deze nieuwe kleur.
+            $veranderKleur.click(function() { //Deze regel definieert een functie die wordt uitgevoerd wanneer er op 
+                                            // het element #veranderKleur wordt geklikt.
+              //BURAYA IHTIYAC YOK=>  letnieuweKleur = $kleurInput.val(); //Hier wordt de waarde van het invoerveld 
+                                                   // met #kleurInput id opgehaald en opgeslagen in de variabele nieuweKleur.
+                $body.css('background-color', $kleurInput.val());
+            });
+
+            // Klik event voor resetten van kleur
+            $resetKleur.click(function() {
+                $body.css('background-color', "");
+                $kleurInput.val("");
+
+            })
+            
+            });
+
+
+
+
+    </script>
+
+    </body>

@@ -1,0 +1,35 @@
+!<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery Oefening</title>
+        <style>
+            .blue {
+                background-color: #00F;
+            }
+        </style>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>
+            Klik op deze div om de achtergrond blauw te maken en daarna de div
+            te laten wegfaden.
+        </div>
+
+        <script>
+        $(document).ready(function() {
+            let $divOpvraging = $('div')
+                $divOpvraging.click(function() { //dit is JQuery opvragen
+                $divOpvraging.addClass('blue');
+                $divOpvraging.fadeOut('slow');
+
+                //yukarda variabla yazmadan once bu sekildeydi=>$('div').addClass('blue');
+                //$('div').fadeOut('slow');
+            })
+        
+        });
+    </script>
+    </body>
+</html>
