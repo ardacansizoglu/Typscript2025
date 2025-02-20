@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Live Karaktertelling </title>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+    </head>
+
+    <body>
+
+        <h2>Live Karaktertelling</h2>
+        <textarea id="bericht" placeholder="Typ hier je bericht..."></textarea>
+        <p><span id="karakterTeller">0</span>/150 karakters</p>
+
+        <script>
+            $(document).ready(function() {
+        //cache JQUERY selectors in hier
+                    let $bericht = $('#bericht')
+                    let $teller = $('#karakterteller')
+
+        //Event for input change to include all possible typing events
+            $bericht.on('keydown', function() {
+                let aantalLetters = $bericht.val().length;
+            
+                if (aantalLetters >= 150 ) {
+                    $teller.addClass('limiet-bereikt').text('150+(Limiet bereikt)');
+                } else {
+                    $teller.removeClass('limiet-bereikt').text(aantalLetters + '/150 karakters');
+        
+                }
+            })
+                
+
+    
+            
+        });
+
+
+    
+        </script>
+
+    </body>
+</html>

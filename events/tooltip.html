@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tooltip</title>
+
+        <style>
+            #hint{
+            cursor:pointer;
+        }
+            .tooltip{
+            margin:8px;
+            padding:8px;
+            border:1px solid blue;
+            background-color:yellow;
+            position: absolute;
+            z-index: 2;
+        }
+
+        </style>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+    </head>
+
+    <body>
+
+        <h1>jQuery tooltip</h1>
+        <label id="name">Naam : </label>
+        <input type="text" size="50" />
+        <span id="hint">help?</span>
+
+        <script>
+            $(document).ready(function() {
+                $('label#name, span#hint')
+                .on('mouseenter', function showTooltip() {
+                    $('<div class="tooltip">Typ je naam in. Minstens 2 karakters.</div>').appendTo('body');
+            })
+                .on('mouseleave', function hideTooltip() {
+                    $('div.tooltip').remove();
+                    })
+
+                .on('mousemove', function changeTooltipPos(event) {
+                    let tooltipX = event.pageX - 8;
+                    let tooltipY = event.pageY + 8;
+                    $('div.tooltip').css({ top: tooltipY, left: tooltipX });
+                    });
+
+
+                });
+        </script>
+
+    </body>
+</html>

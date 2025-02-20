@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Muis Over</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+    </head>
+
+    <body>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            numquam nisi quasi veritatis, eaque repellat neque. Quia nulla
+            fugiat sit atque quasi maxime voluptatibus consequatur unde! Id illo
+            deserunt eligendi!</p>
+
+        <script>
+            $(document).ready(function() {
+                $('document').on('click', function(event) {
+                    console.log("U hebt geklikt op x : " + event.pageX + " en y : " +  event.pageY);
+            });
+
+            $(document).on('click', function(event) {
+                    console.log("U hebt geklikt op x : " + event.pageX + " en y : " + event.pageY);
+                    });
+
+
+            });
+</script>
+
+    </body>
+</html>

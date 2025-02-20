@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event opsporing bij click op div </title>
+
+        <style>
+        .resizable1, .resizable2, .resizable3 {
+            margin:10px;
+            padding:12px;
+            border:2px solid #666;
+            width:60px; 
+        }
+        
+
+
+        </style>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+    </head>
+
+    <body>
+
+        <div class="resizable1">Blauw</div>
+        <div class="resizable2">Groen</div>
+        <div class="resizable3">Rood</div>
+
+        <script>
+            $(document).ready(function() {
+                $('div').on('click', function(event) {
+                    console.log('Type is:', event.type); //Eigenschappen van gebeurtenisobjecten registreren bij klikken
+                    console.log('Target is:', event.target); //Tıklanan öğe (<div> i ifade eder) ve direk konsola yazdirir
+                    console.log('Target innerHTML is :', event.target.innerHTML); 
+                                                    //Tıklanan öğenin içeriği (örneğin 'Blauw', 'Groen'
+                                                  //<div> öğesinin içeriğini (metnini) temsil eder.
+                                                
+                $(this).css('width', '100px');                                 
+            });
+
+                $('.resizable1').css('background-color', 'blue').css('color');
+                $('.resizable2').css('background-color', 'green').css('color');
+                $('.resizable3').css('background-color', 'red').css('color');
+
+
+
+            $('div').hover(function() {  //fare <div> öğesinin üzerine geldiğinde (hover) çalışacak bir işlev tanımlar. Bu işlevler şunları yapar:
+                $(this).css('width', '100px'); //mouse over
+
+            }),
+
+            $('div').hover(function() {  // this=div
+                $(this).css('width', '60px');
+                
+            }
+            
+        );
+    });
+
+    
+        </script>
+
+    </body>
+</html>
