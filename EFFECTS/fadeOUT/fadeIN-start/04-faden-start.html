@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style>
+    </style>
+    </head>
+
+    <body>
+        <div id="foto">
+            <img src="logo-jquery.jpg" />
+        </div>
+        <input id="knop" type="button" value="fadeOut" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+    $(document).ready(function() {
+        $('#knop').on('click',function () {
+            $('#knop').fadeToggle(500, function () {
+                if ($('#knop').val() === 'fadeOut') {
+                    $('#knop').val('FadeIn');
+                } else {
+                    $('#knop').val('FadeOut');
+                }
+        
+        });
+    })
+});
+// .fadeOut(): opaktan şeffafa ardından ekranı hiçbiri olarak ayarlayın
+//.fadeIn(): orijinali geri göster şeffaftan opak hale gelir
+//.fadeToggle() yeteneği
+//.fadeTo(): ​​​​şeffaflığı kendiniz belirleyin: 0 ile 1 arasındaki sayı
+    </script>
+    </body>
+
+</html>

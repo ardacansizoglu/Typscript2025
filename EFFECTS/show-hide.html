@@ -1,0 +1,43 @@
+!<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery Oefening</title>
+        <style>
+            .mydiv{ 
+                Margin:10px;
+                padding:12px;
+                border:2px solid #666;
+                width:100px;
+                height:100px  ;    
+            }
+
+        </style>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="mydiv">
+            Dit is mijn div.
+        </div>
+        <input id="hide" type="button" value="Hide" />
+        <input id="show" type="button" value="Show" />
+
+        <script>
+        $(document).ready(function() {
+            $mydiv = $('.mydiv');
+            $('#hide').on('click', function() {
+                $mydiv.hide(1000);
+            })
+
+            $('#show').on('click', function() {
+                $mydiv.show(1000);
+// .mydivden 2tane oldugu iicn variabla yaptik ve en tepede 
+//  $mydiv = $('.mydiv'); bunu ekledik
+            })
+        });
+        
+    </script>
+    </body>
+</html>
