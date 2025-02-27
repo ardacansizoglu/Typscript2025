@@ -45,25 +45,33 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
-
+//"animate"=>> fonksiyonunu dışarıda tanımlayarak, farklı yerlerde tekrar tekrar kullanabilirsiniz. 
+// Böylece kod tekrarı önlenmiş olur ve aynı animasyonu farklı seçimler için kolayca uygulayabilirsini
         function animate(selection, propertyValue, speed) {
-                        return selection.animate(propertyValue, speed, function() {
+                        return selection.animate(propertyValue, speed, function() {//animate fonksiyonu=>
+                                                                                //okunabilirliğini ve performansını artırabilir
                         });
                     }
     
             $(document).ready(function() {
+
                 $('#menu li').hover(
                     function() {
-                        animate($(this).find('a'), {"bottom": "0"}, 200);
+                        animate($(this).find('a'), {"bottom": "0"}, 200);//$(this)=>, fare olayının gerçekleştiği spesifik elemanı hedeflemek için kullnlr
                         animate($(this).find('i'), {"top": "0"}, 200);
                         animate($(this).find('.description'), {"top": "0"}, 200);
                     },
+
+
                     // Mouse leave function
                     function() {
+// Bu satır, duraklamış animasyonları durdurur ve bekleyen animasyonları tamamlar. 
+// Yani, önceki animasyonları durdurur ve animasyonların son durumuna geçer.
                         $(this).find('a, i, .description').stop(true, true);
 
-                        animate($(this).find('a'), {"bottom": "-100px"}, 200);
-                        animate($(this).find('i'), {"top": "-100px"}, 200); 
+                        animate($(this).find('a'), {"bottom": "-100px"}, 200); //$(this).find('a'), bu LI elemanının içindeki a etiketini seçer.
+                        animate($(this).find('i'), {"top": "100px"}, 200);//this, fare ile gelinen LI elemanını ifade eder ve find yöntemi
+                        //  bu elemanın içindeki i ve .description sınıfına sahip etiketleri seçer.
                         animate($(this).find('.description'), {"top": "-100px"}, 200);
                     }
                 );

@@ -192,9 +192,17 @@
 // De "activated" en "disactivated" classes worden via css opgeschoven naar links,
                 
                 
-                $(this).addClass('activated').removeClass('disactivated')
-                    .siblings().addClass('disactivated').removeClass('activated');
-                
+            // $('#menu li').click(function() {
+            //         let index = $(this).index();
+                    $(this).addClass('activated').removeClass('disactivated')
+                        .siblings().addClass('disactivated').removeClass('activated');
+                    
+                        $('#inhoud > div').eq(index).slideDown()
+                    .siblings().hide();
+                });
+                $('#inhoud > div').first().show();
+            });
+    
 // Show corresponding content
                 // De "slideDown" effect zorgt ervoor dat de content van de geselecteerde menu nummer zichtbaar word
 
@@ -202,13 +210,13 @@
 //Yani içerik kutularımızın hepsini seçmiş oluyoruz
 
 //Seçilen div'ler arasından belirli bir sıradakini seçer
-                $('#inhoud > div').eq(index).slideDown()//  .slideDown()=>Seçilen div'i aşağı doğru kayarak açar
+            //  .slideDown()=>Seçilen div'i aşağı doğru kayarak açar
                                                            //Yani animasyonlu bir şekilde görünür hale getirir
 //Seçilen div'in kardeşlerini (yani aynı seviyedeki diğer div'leri) seçer
 //Örnek: İkinci div seçiliyse, birinci ve üçüncü div'leri seçer                
-                    .siblings().hide();
-            });
-        });
+                
+        
+    
     </script>
     </body>
 </html>

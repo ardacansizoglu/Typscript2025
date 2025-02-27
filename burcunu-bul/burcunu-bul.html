@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="nl">
+ <!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Wat is jouw sterrenbeeld?</title>
+        <title>Zodiac Sign Calculator</title>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script
@@ -12,35 +12,46 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
         <style>
         body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        padding: 0;
-        background-color: #f9f9f9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
         }
         .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 100%;
+        max-width: 500px;
         }
         h1 {
-        font-size: 36px;
+        color: #333;
+        text-align: center;
         margin-bottom: 20px;
         }
         .form-group {
         margin-bottom: 15px;
-        display: flex;
-        align-items: center;
         }
         label {
-        font-size: 20px;
-        margin-right: 10px;
-        min-width: 180px;
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
         }
         input[type="text"] {
-        padding: 8px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
         font-size: 16px;
-        border: 1px solid #ccc;
-        width: 300px;
+        }
+        input.error {
+        border-color: #ff0000;
         }
         .error-message {
         color: #ff0000;
@@ -48,77 +59,66 @@
         margin-top: 5px;
         display: none;
         }
-        .buttons {
-        margin-top: 20px;
-        display: flex;
-        gap: 10px;
-        }
         button {
-        background-color: #5ba4a4;
+        background-color: #4CAF50;
         color: white;
         border: none;
-        padding: 10px 15px;
+        padding: 12px 20px;
         font-size: 16px;
+        border-radius: 5px;
         cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        }
+        button:hover {
+        background-color: #45a049;
         }
         #result {
-        margin-top: 40px;
-        }
-        #zodiacTitle {
-        font-size: 24px;
-        margin-bottom: 20px;
-        font-weight: bold;
-        }
-        #zodiacName {
-        font-size: 36px;
-        color: white;
-        background-color: #5ba4a4;
-        padding: 20px;
-        margin-bottom: 20px;
-        display: inline-block;
-        min-width: 150px;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        text-align: center;
+        display: none;
         }
         #zodiacImage {
-        max-width: 400px;
+        max-width: 150px;
+        margin: 15px auto;
         display: block;
-        margin-bottom: 20px;
         }
-        .tooltip {
-        background-color: #5ba4a4;
-        color: white;
-        padding: 10px 15px;
-        border: none;
+        #zodiacName {
+        font-weight: bold;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+        }
+        #zodiacDescription {
+        color: #666;
         }
     </style>
     </head>
     <body>
         <div class="container">
-            <h1>Wat is jouw sterrenbeeld?</h1>
-            <p>Geef de dag en maand van jouw geboortedatum in.</p>
-
+            <h1>Zodiac Sign Calculator</h1>
             <div class="form-group">
-                <label for="day">Geboortedag:</label>
-                <input type="text" id="day" placeholder="01">
-                <div id="dayError" class="error-message">Voer een geldige dag in
-                    (1-31)</div>
+                <label for="day">Day of Birth:</label>
+                <input type="text" id="day" placeholder="Enter day (1-31)">
+                <div id="dayError" class="error-message">Please enter a valid
+                    day (1-31)</div>
             </div>
-
             <div class="form-group">
-                <label for="month">Geboortemaand:</label>
-                <input type="text" id="month" placeholder="04">
-                <div id="monthError" class="error-message">Voer een geldige
-                    maand in (1-12)</div>
+                <label for="month">Month of Birth:</label>
+                <input type="text" id="month" placeholder="Enter month (1-12)">
+                <div id="monthError" class="error-message">Please enter a valid
+                    month (1-12)</div>
             </div>
+            <button id="calculate">Calculate My Zodiac Sign</button>
 
-            <div class="buttons">
-                <button id="calculate">Ontdek je sterrenbeeld</button>
-                <button id="showMonth">Geef je geboortemaand in</button>
-            </div>
-
-            <div id="result" style="display:none;">
-                <div id="zodiacTitle">Jouw sterrenbeeld:</div>
+            <div id="result">
                 <div id="zodiacName"></div>
-                <img id="zodiacImage" src alt="Sterrenbeeld">
+                <img id="zodiacImage" src="/api/placeholder/150/150"
+                    alt="Zodiac Sign">
+                <div id="zodiacDescription"></div>
             </div>
         </div>
 
@@ -130,10 +130,10 @@
         const $dayError = $("#dayError");
         const $monthError = $("#monthError");
         const $calculateBtn = $("#calculate");
-        const $showMonthBtn = $("#showMonth");
         const $result = $("#result");
         const $zodiacName = $("#zodiacName");
         const $zodiacImage = $("#zodiacImage");
+        const $zodiacDescription = $("#zodiacDescription");
         
         // Initialize validation booleans
         let dayOk = false;
@@ -141,20 +141,13 @@
         
         // Add tooltips to input fields
         $dayInput.tooltip({
-            content: "Voer je geboortedag in (1-31)",
-            position: { my: "left center", at: "right+10 center" },
-            classes: { "ui-tooltip": "tooltip" }
+            content: "Enter the day of your birth (1-31)",
+            position: { my: "left center", at: "right+10 center" }
         });
         
         $monthInput.tooltip({
-            content: "Voer je geboortemaand in (1-12)",
-            position: { my: "left center", at: "right+10 center" },
-            classes: { "ui-tooltip": "tooltip" }
-        });
-        
-        // Focus on month input when showMonth button is clicked
-        $showMonthBtn.click(function() {
-            $monthInput.focus();
+            content: "Enter the month of your birth (1-12)",
+            position: { my: "left center", at: "right+10 center" }
         });
         
         // Clear placeholder text on focus
@@ -176,8 +169,8 @@
             
             // Check if empty
             if (day === "") {
-            $(this).css("border-color", "red");
-            $dayError.text("Dag mag niet leeg zijn").show();
+            $(this).addClass("error");
+            $dayError.text("Day cannot be empty").show();
             dayOk = false;
             return;
             }
@@ -185,22 +178,22 @@
             // Check if it's a number
             const dayValue = parseInt(day);
             if (isNaN(dayValue)) {
-            $(this).css("border-color", "red");
-            $dayError.text("Voer een nummer in").show();
+            $(this).addClass("error");
+            $dayError.text("Please enter a number").show();
             dayOk = false;
             return;
             }
             
             // Check if it's in valid range
             if (dayValue < 1 || dayValue > 31) {
-            $(this).css("border-color", "red");
-            $dayError.text("Dag moet tussen 1 en 31 zijn").show();
+            $(this).addClass("error");
+            $dayError.text("Day must be between 1 and 31").show();
             dayOk = false;
             return;
             }
             
             // Valid input
-            $(this).css("border-color", "#ccc");
+            $(this).removeClass("error");
             $dayError.hide();
             dayOk = true;
         });
@@ -211,8 +204,8 @@
             
             // Check if empty
             if (month === "") {
-            $(this).css("border-color", "red");
-            $monthError.text("Maand mag niet leeg zijn").show();
+            $(this).addClass("error");
+            $monthError.text("Month cannot be empty").show();
             monthOk = false;
             return;
             }
@@ -220,22 +213,22 @@
             // Check if it's a number
             const monthValue = parseInt(month);
             if (isNaN(monthValue)) {
-            $(this).css("border-color", "red");
-            $monthError.text("Voer een nummer in").show();
+            $(this).addClass("error");
+            $monthError.text("Please enter a number").show();
             monthOk = false;
             return;
             }
             
             // Check if it's in valid range
             if (monthValue < 1 || monthValue > 12) {
-            $(this).css("border-color", "red");
-            $monthError.text("Maand moet tussen 1 en 12 zijn").show();
+            $(this).addClass("error");
+            $monthError.text("Month must be between 1 and 12").show();
             monthOk = false;
             return;
             }
             
             // Valid input
-            $(this).css("border-color", "#ccc");
+            $(this).removeClass("error");
             $monthError.hide();
             monthOk = true;
         });
@@ -258,50 +251,52 @@
             
             // Determine zodiac sign
             let zodiacSign = "";
-            let zodiacImagePath = "";
+            let description = "";
             
             if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
-                zodiacSign = "Ram";
-                zodiacImagePath = "img/Ram.jpg";
+                zodiacSign = "Aries";
+                description = "Aries is the first sign of the zodiac. Dynamic and confident, Aries are natural leaders and pioneers.";
             } else if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) {
-                zodiacSign = "Stier";
-                zodiacImagePath = "img/Stier.jpg";
+                zodiacSign = "Taurus";
+                description = "Taurus is known for being reliable, practical, and devoted. They enjoy the pleasures of life.";
             } else if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) {
-                zodiacSign = "Tweelingen";
-                zodiacImagePath = "img/Tweelingen.jpg";
+                zodiacSign = "Gemini";
+                description = "Gemini is versatile, expressive, and curious. They are known for their excellent communication skills.";
             } else if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) {
-                zodiacSign = "Kreeft";
-                zodiacImagePath = "img/Kreeft.jpg";
+                zodiacSign = "Cancer";
+                description = "Cancer is intuitive, emotional, and protective. They value home and family above all else.";
             } else if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) {
-                zodiacSign = "Leeuw";
-                zodiacImagePath = "img/Leeuw.jpg";
+                zodiacSign = "Leo";
+                description = "Leo is passionate, generous, and warm-hearted. They love being in the spotlight.";
             } else if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) {
-                zodiacSign = "Maagd";
-                zodiacImagePath = "img/Maagd.jpg";
+                zodiacSign = "Virgo";
+                description = "Virgo is analytical, practical, and attentive to detail. They are methodical in their approach to life.";
             } else if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) {
-                zodiacSign = "Weegschaal";
-                zodiacImagePath = "img/Weegschaal.jpg";
+                zodiacSign = "Libra";
+                description = "Libra is diplomatic, fair-minded, and social. They value harmony and cooperation.";
             } else if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) {
-                zodiacSign = "Schorpioen";
-                zodiacImagePath = "img/Schorpioen.jpg";
+                zodiacSign = "Scorpio";
+                description = "Scorpio is passionate, determined, and decisive. They are resourceful and brave.";
             } else if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) {
-                zodiacSign = "Boogschutter";
-                zodiacImagePath = "img/Boogschutter.jpg";
+                zodiacSign = "Sagittarius";
+                description = "Sagittarius is optimistic, freedom-loving, and philosophical. They love adventure and new experiences.";
             } else if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) {
-                zodiacSign = "Steenbok";
-                zodiacImagePath = "img/Steenbok.jpg";
+                zodiacSign = "Capricorn";
+                description = "Capricorn is disciplined, responsible, and ambitious. They are masters of self-control.";
             } else if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) {
-                zodiacSign = "Waterman";
-                zodiacImagePath = "img/Waterman.jpg";
+                zodiacSign = "Aquarius";
+                description = "Aquarius is progressive, original, and independent. They are humanitarian and innovative thinkers.";
             } else if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) {
-                zodiacSign = "Vissen";
-                zodiacImagePath = "img/Vissen.jpg";
+                zodiacSign = "Pisces";
+                description = "Pisces is intuitive, artistic, and compassionate. They are known for their wisdom and artistic talents.";
             }
             
             // Display result
             $zodiacName.text(zodiacSign);
+            $zodiacDescription.text(description);
             $zodiacImage.attr("alt", zodiacSign);
-            $zodiacImage.attr("src", zodiacImagePath);
+            // Note: Using placeholder for image since we can't access external images
+            $zodiacImage.attr("src", `/api/placeholder/150/150`);
             $result.fadeIn();
             } else {
             $result.hide();

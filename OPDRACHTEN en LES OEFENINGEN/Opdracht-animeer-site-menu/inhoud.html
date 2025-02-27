@@ -3,213 +3,232 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Events Animate Site Menu</title>
+        <title>jQuery rocks the menu!</title>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <style>
-        .container {
-            position: relative;
-            width: 100%;
-            display: none;
-        }
-
-        div#menu {
-            width: 150px;
-            left: -180px;
-            position: absolute;
-            z-index: 100;
-        }
-
-        div#menu ul li {
-            margin-bottom: 1px;   
-            position:center;
-            float: left; 
-        }
-
-        div#menu ul#unorderedList li a {
-            width: 150px;
-            height: 22px;
-            background-color: #00293E;
-            text-decoration: none;
-            display: block;
-            padding: 7px 10px 0 0;
-            text-align: right;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #inhoud {
-            left: 50px;
-            position: absolute;
-            width: 500px;
-        }
-/* Ik heb toegevoegd */
-
-        .activated a {
-            color: #FFA500 !important; 
-            background-color: green !important;
-        }
-
-        .disactivated a {
-            color: #ffffff;
-            background-color: #00293E;
-        }
-        #title {
-            font-size: 60px;
-            font-weight: bold;
-            padding: 50px ;
-            margin-bottom: 10px;
-        }
-        .activated a {
-            color: #e32825 !important; 
-        }
-
-        .disactivated a {
-            color: #ffffff;
-        }
-        
-
-        #inhoud > div {
-            display: none; 
-            padding: 20px;
-            background-color: #f0f0f0;
-            margin-bottom: 10px;
-        }
-
-    </style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+            
+            #title {
+                font-size: 36px;
+                font-weight: bold;
+                margin-bottom: 50px;
+            }
+            
+            .container {
+                position: relative;
+                width: 100%;
+                display: flex;
+                min-height: 400px;
+            }
+            
+            #menu-container {
+                width: 150px;
+                position: relative;
+                margin-top: 50px; 
+            }
+            
+            #menu {
+                position: absolute;
+                width: 30px;
+                left: 0;
+                z-index: 100;
+            }
+            
+            #menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            #menu ul li {
+                margin-bottom: 1px;
+                position: relative;
+                overflow: hidden;
+                width: 30px;
+                height: 30px;
+            }
+            
+            #menu ul li a {
+                width: 30px;
+                height: 30px;
+                background-color: #00293E;
+                color: white;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+                line-height: 30px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            
+            #menu ul li .menu-label {
+                position: absolute;
+                left: 30px;
+                top: 0;
+                height: 30px;
+                background-color: #b5d56a;
+                color: white;
+                line-height: 30px;
+                padding: 0 10px;
+                display: none;
+                white-space: nowrap;
+            }
+            
+            #inhoud {
+                flex-grow: 1;
+                padding-left: 30px;
+            }
+            
+            #inhoud > div {
+                display: none;
+                margin-bottom: 20px;
+            }
+            
+            #inhoud > div h2 {
+                margin-top: 0;
+            }
+            
+            .activated a {
+                background-color: #00293E !important;
+                color: #e32825 !important;
+            }
+        </style>
     </head>
     <body>
-        <div id="container">
-            <div id="menu">
-                <ul id="unorderedList">
-                    <li class="activated"><a>1</a></li>
-                    <li class="disactivated"><a>2</a></li>
-                    <li class="disactivated"><a>3</a></li>
-                    <li class="disactivated"><a>4</a></li>
-                    <li class="disactivated"><a>5</a></li>
-                </ul>
+        <div id="title">jQuery rocks the menu!</div>
+
+        <div class="container">
+            <div id="menu-container">
+                <div id="menu">
+                    <ul id="unorderedList">
+                        <li class="activated">
+                            <a>1</a>
+                            <div class="menu-label">Menu 1</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>2</a>
+                            <div class="menu-label">Menu 2</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>3</a>
+                            <div class="menu-label">Menu 3</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>4</a>
+                            <div class="menu-label">Menu 4</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>5</a>
+                            <div class="menu-label">Menu 5</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>6</a>
+                            <div class="menu-label">Menu 6</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-        <!-- <div id="title">JQUERY rocks the menu!</div> -->
-
-                <div id="inhoud">
-                    <div>
-                        <h1> Inhoud-1 </h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Nihil repellendus eligendi quod possimus a quae
-                            nemo,
-                            numquam dicta at eum quia nam? Cum sed ad id nobis
-                            harum
-                            alias quibusdam.</p>
-                    </div>
-
-                    <div>
-                        <h1>Inhoud-2</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Eius, rerum. Aliquid, perspiciatis? Quod, magnam! Id
-                            deleniti, nihil voluptatibus aperiam architecto
-                            perferendis, quidem minus atque illum, optio
-                            commodi.</p>
-                    </div>
-
-                    <div>
-                        <h1>Inhoud-3</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Nihil repellendus eligendi quod possimus a quae
-                            nemo,
-                            numquam dicta at eum quia nam? Cum sed ad id nobis
-                            harum
-                            alias quibusdam.</p>
-                    </div>
-
-                    <div>
-                        <h1>Inhoud-4</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Nihil repellendus eligendi quod possimus a quae
-                            nemo,
-                            numquam dicta at eum quia nam? Cum sed ad id nobis
-                            harum
-                            alias quibusdam.</p>
-                    </div>
-
-                    <div>
-                        <h1>Inhoud-5</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Nihil repellendus eligendi quod possimus a quae
-                            nemo,
-                            numquam dicta at eum quia nam? Cum sed ad id nobis
-                            harum
-                            alias quibusdam.</p>
-                    </div>
-
-                    <div>
-                        <h1>Inhoud-6</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                            Nihil repellendus eligendi quod possimus a quae
-                            nemo,
-                            numquam dicta at eum quia nam? Cum sed ad id nobis
-                            harum
-                            alias quibusdam.</p>
-                    </div>
+            <div id="inhoud">
+                <div>
+                    <h2>Inhoud 1</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        In nec nunc tellus. In ultricies suscipit mi nec porta.
+                        Maecenas faucibus commodo purus, quis adipiscing libero
+                        semper sit amet. Cras ultrices risus vitae nunc interdum
+                        blandit. Class aptent taciti sociosqu ad litora torquent
+                        per conubia nostra, per inceptos himenaeos. Vestibulum
+                        urna mi, venenatis eget porta in, mollis in eros. Etiam
+                        pretium sem id dui molestie dictum. Sed in nunc at risus
+                        porttitor venenatis. Pellentesque habitant morbi
+                        tristique senectus et netus et malesuada fames ac turpis
+                        egestas. Sed eu lectus vel velit consectetur aliquam.
+                        Quisque at orci vitae tellus porttitor malesuada.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 2</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Eius, rerum. Aliquid, perspiciatis? Quod, magnam! Id
+                        deleniti, nihil voluptatibus aperiam architecto
+                        perferendis, quidem minus atque illum, optio
+                        commodi.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 3</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 4</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 5</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 6</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
                 </div>
             </div>
         </div>
 
         <script>
-        $(document).ready(function() {
-            $('#container').fadeIn(1000);
-
-// Menu hover effect
-//De "menu" div wordt via css opgeschoven naar links, 
-// zodat enkel de nummer nog zichtbaar is
-
-            $('#menu li').hover( 
-                function() {
-
-                    $(this).animate({ left: '100px'}, slow);
-                    $(this).animate({ width: "100px"}, 500);
-                    $(this).animate({ heigt: "80px"}, 500);
-                },
-                function() {
-                    $(this).animate({ width: "80px"}, 500);
-                }
-            );
-
-        
-// Update menu classes
-// De "activated" class wordt via css opgeschoven naar links, 
-// zodat enkel de nummer zichtbaar is
-// De "disactivated" class wordt via css opgeschoven naar links, 
-// zodat de andere nummers verdwijnen
-// De "activated" en "disactivated" classes worden via css opgeschoven naar links,
+            $(document).ready(function() {
+// Ilk div i default gostermek icin
+                $('#inhoud > div').first().show();
                 
+//Daha sonra menuyu harekelendir, Menu-hover-effect ile
+                $('#menu li').hover(
+                    function() { ///ONEMLI!! mouse enter OLUNCA LABELLARI bul
+                        $(this).stop().animate({width: '150px'}, 300);
+                        $(this).find('.menu-label').show();
+                    },
+                    function() {
+//Fare ayrıldığında (sadece aktif değilse küçülür)
+                        if (!$(this).hasClass('activated')) {
+                            $(this).stop().animate({width: '30px'}, 300);
+                            $(this).find('.menu-label').hide();
+                        }
+                    }
+                );
+//CLICK EVENTS burdan basliyor              
+            
                 $('#menu li').click(function() {
-                    let index = $(this).index();
+//Ilk once "Reset all items" yapiyorsun
+                    $('#menu li').stop().animate({width: '30px'}, 300);
+                    $('#menu li .menu-label').hide();
+                    
+// Click`lenen itemi active etmek icin!
                     $(this).addClass('activated').removeClass('disactivated')
                         .siblings().addClass('disactivated').removeClass('activated');
-                        $('#inhoud > div').eq(index).slideDown()
-                    .siblings().hide();
-
-// Show corresponding content
-    // De "slideDown" effect zorgt ervoor dat de content van de geselecteerde menu nummer zichtbaar word
-
-//'inhoud' ID'sine sahip elementin içindeki tüm div'leri seçer
-//Yani içerik kutularımızın hepsini seçmiş oluyoruz
-
-//Seçilen div'ler arasından belirli bir sıradakini seçer
-//  .slideDown()=>Seçilen div'i aşağı doğru kayarak açar
-        //Yani animasyonlu bir şekilde görünür hale getirir
-//Seçilen div'in kardeşlerini (yani aynı seviyedeki diğer div'leri) seçer
-//Örnek: İkinci div seçiliyse, birinci ve üçüncü div'leri seçer                
-            
+                    
+// Tıklanan öğeyi genişletmek icin CSS ile tekrar label bul
+                    $(this).stop().animate({width: '150px'}, 300);
+                    $(this).find('.menu-label').show();
+                    
+// Tiklanan oge ile İlgili içeriği göstermek icin index kullanilacak
+                    let index = $(this).index();
+                    $('#inhoud > div').eq(index).fadeIn()
+                        .siblings().hide();
+                });
             });
-        });
-    </script>
+        </script>
     </body>
 </html>

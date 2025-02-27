@@ -49,6 +49,21 @@ ul#menu a{
     width:210px;
     text-decoration: none;
 }
+/* ICONUN DA SLIDE-DOWN OLMASI ICIN EKLEDIM AMA ORTADAN KAYBOLDU */
+/* 
+#menu li i, 
+#menu li .description {
+    position: relative;
+    top: -100px;
+}
+
+#menu li a {
+    position: relative;
+    bottom: -100px;
+} */
+
+
+
 .icon_about,
 .icon_work,
 .icon_help,
