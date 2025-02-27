@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="sun.css">
+    </head>
+
+    <body>
+        <p>
+            <input id="g1">
+            <input id="g2">
+            <button id="bereken1">Bereken</button>
+            <input id="result1">
+        </p>
+        <p>
+            <input id="g3">
+            <input id="g4">
+            <button id="bereken2">Bereken</button>
+            <input id="result2">
+        </p>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+
+        <script>
+            $(document).ready(function() {
+                $('#bereken1').on('click', function() {
+                    let result = parseInt($('#g1').val()) + parseInt($('#g2').val());
+                    $('#result1').val(result);
+                    })
+
+                $('#bereken2').on('click', function() { //open acolades =>()
+                    let result = parseInt($('#g3').val()) + parseInt($('#g4').val());
+                    $('#result2').val(result);
+                })
+
+
+            });
+
+
+
+
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+        button {
+            padding: 10px 20px;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+    </head>
+    <body>
+        <button id="counterBtn">0</button>
+
+        <script>
+        $(document).ready(function() {
+            let $button = $('#counterBtn'); 
+                console.log(0);
+
+            $button.click(function() {
+                let currentValue = parseInt($button.text());
+                currentValue++;
+                $button.text(currentValue);
+                console.log(currentValue);
+            });
+        });
+    </script>
+    </body>
+</html>

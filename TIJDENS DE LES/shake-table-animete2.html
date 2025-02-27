@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Muis Over</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
+">
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+        <style>
+            #box{
+                width: 100px;
+                height: 100px;
+                background-color: #000;
+            }
+            div{
+                margin-bottom: 25px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <h1 class="animate__animated animate__bounceIn">Animatie met animate.css</h1>
+            <div>
+                    <a id="link" href="#">Flash de box</a>
+                    <div id="box" class="animate__animated"></div>
+            </div>
+            <div>Naam:
+                    <input id="naam" type="text" class="animate__animated"> </input>
+                    <button id="knop">Verzend</button>
+            </div>
+
+
+        <script>
+            $(document).ready(function() {
+        
+                $(".nostop li").hover(
+                function() {
+                $(this).animate({ width: "100px" }, 500);
+                },
+                function() {
+                    $(this).animate({ width: "80px" }, 500);
+                }
+                );
+                $(".stop li").hover(
+                function() {
+                $(this).stop().animate({ width: "100px" }, 500);
+                },
+                function() {
+                $(this).stop().animate({ width: "80px" }, 500);
+                }
+                );
+
+
+           
+
+        });
+</script>
+
+    </body>
+</html>

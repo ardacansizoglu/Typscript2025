@@ -8,6 +8,28 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
         </script>
+
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+        p {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .limiet-bereikt {
+            color: red;
+            font-weight: bold;
+        }
+            </style>
     </head>
 
     <body>
@@ -18,12 +40,10 @@
 
         <script>
             $(document).ready(function() {
-        //cache JQUERY selectors in hier
                     let $bericht = $('#bericht')
-                    let $teller = $('#karakterteller')
+                    let $teller = $('#karakterTeller')
 
-        //Event for input change to include all possible typing events
-            $bericht.on('keydown', function() {
+            $bericht.on('input', function() {
                 let aantalLetters = $bericht.val().length;
             
                 if (aantalLetters >= 150 ) {
@@ -33,10 +53,6 @@
         
                 }
             })
-                
-
-    
-            
         });
 
 

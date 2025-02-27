@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet">
+        <style>
+            ul{
+                margin: 0 0 1em;
+                width: 125px;
+                list-style: none;
+            }
+            li{
+                width:80px;
+                height:40px;
+                background:#444;
+                margin-bottom:10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- burda herzaman ilk elemanlarin oldugunu dusunerek yaziyorsun -->
+        <!-- cunku ilk linke tikladiginda div saga dogru uzayacak -->
+        <ul class="nostop">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="stop">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+
+        <script>
+            $(document).ready(function() {
+                $(".nostop li").hover(
+                    function() {
+                        $(this).animate({
+                            width: "100px",
+                        }, 500);
+                    },
+
+                    function() {
+                        $(this).animate({
+                            width: "80px",
+                        }, 500);
+                    }
+                );
+                $(".stop li").hover(
+                    function() {
+                        $(this).stop().animate({
+                            width: "100px",
+                        }, 500);
+                    },
+                    function() {
+                        $(this).stop().animate({
+                            width: "80px",
+                        }, 500);
+                    }
+                );
+
+
+//3.bir fonksiyon screenshot halinde ,oraya bak
+
+
+            });
+
+
+
+
+    </script>
+
+    </body>
+</html>

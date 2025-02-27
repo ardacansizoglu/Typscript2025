@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Muis Over</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+        </script>
+        <style>
+            #content {
+                background-color:#ffaa00;
+                width:300px;
+                height:30px;
+                padding:3px;
+}
+
+        </style>
+    </head>
+
+    <body>
+        <input type="button" id="animate" value="Animate" />
+        <div id="content">Animate me</div>
+
+        <script>
+//.animate(properties,[ duration ],[ easing ],[ callback ] )
+
+            $(document).ready(function() {
+                $("#animate").on('click', function() {
+                    $("#content")
+                    .animate({ "height": "100px" }, 500)
+                    .animate({ "width": "250px" }, 500);
+                    });
+
+                });
+//özellikler: animasyon için kullanılan CSS özellikleri ve değerleri nesnesi
+//süre: animasyonun ne kadar süreyle çalışacağını belirleyen dize veya sayı
+//etkinlik: hangi kolaylaştırma işlevinin kullanılacağını belirten dize
+//geri çağırma: animasyon tamamlandıktan sonra çağrılacak işlev, eşleşen öğe başına bir kez çağrılır
+
+</script>
+
+    </body>
+</html>

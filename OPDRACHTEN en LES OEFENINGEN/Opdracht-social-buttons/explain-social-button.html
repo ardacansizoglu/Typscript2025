@@ -76,13 +76,15 @@
             $('#social').animate({ 
                 opacity: 1,          
                 right: '+=150px'},500); //Schuif terug naar rights
-        $('this').fadeOut();            //this= #share
+        $('this').fadeOut();    //this= #share
     });
 
-        $('#close').on('click', function() { 
+        $('#close').on('click', function() { //Voeg een click event listener toe aan het element met het ID close.
+//Animeert het element met het ID SOCIAL door de right positie met 137 pixels te verlagen gedurende 500 milliseconden,
+//  waardoor het terug naar links schuift.           
             $('#social').animate({ 
                 right: "-=150px"}, 500 ); //Schuif terug naar links
-            $('#share').fadeIn(); 
+            $('#share').fadeIn(); //Laat de share knop geleidelijk weer verschijnen
         });
 
     });

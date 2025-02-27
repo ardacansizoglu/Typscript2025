@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    </head>
+    <body>
+        <button id="counterBtn">0</button>
+
+        <script>
+            // DOM yüklendikten sonra çalışacak jQuery fonksiyonu
+            // Doküman yüklenmeden önce çalışmayacağı için $(document).ready() ile belirtildi.
+            // Bu sayede sayfa yüklenirken bu fonksiyon çalışacak.
+            // Button'ın id'si counterBtn olan butonun textini alıp, sayısını bir arttırıp, tekrar text'e yazdırıyoruz.
+            // Bu işlemde console.log() fonksiyonu ile sayının değerini ekrana yazdırıyoruz.
+            // Bu sayede her click eventinde sayıyı bir arttırarak ekranda gösteriyoruz.
+            // Bu, sayfa yüklenmeden önce sayıyı göstermek için başlangıç değerini 0 olarak atadık.
+            // Initial value is shown on button when page loads.
+        $(document).ready(function() {
+            let $button = $('#counterBtn'); 
+
+            // Başlangıç değeri olarak 0'ı konsola yazdır
+            console.log(0);  // Log initial value
+            
+            $button.click(function() {
+                // Get current value and convert to number
+                // Mevcut buton değerini al ve sayıya çevir
+                let currentValue = parseInt($button.text());
+                
+                // Increment value
+                // Mevcut değeri bir artır
+                currentValue++;
+                
+                // Update button text
+                // Butonun textini yeni değerle güncelle
+                // Arttırılan sayıyı butona yazdır
+
+
+                // Butonun metnini güncelle
+                $button.text(currentValue);
+                
+                // Yeni değeri konsola yazdır
+                console.log(currentValue);
+            });
+        });
+    </script>
+    </body>
+</html>

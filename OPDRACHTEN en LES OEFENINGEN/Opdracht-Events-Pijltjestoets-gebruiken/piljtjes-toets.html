@@ -31,19 +31,36 @@
 
         <script>
             $(document).ready(function() {
-                $
-
-
-        
-                
-
-    
+                $('.kader input').on('focus', function() {
+                    $(this).addClass('kader');
             
-        });
+                }).on('blur', function() {
+                    $(this).removeClass('kader');
+                });
+//Ik begreep wat ik moest doen tot de 4e stap, maar helaas daarna niet.
+// Niet precies begrijpen wat er in het volgende deel moest gebeuren. 
+// Ik schreef het zoveel als ik het kon begrijpen en implementeren via de W3school-link.
 
+                let  pijltjestoets = '';
+                switch (event.which) {
+                    case 37:
+                    pijltjestoets = 'Links';
+                        break;
+                    case 38:
+                    pijltjestoets= 'Omhoog';
+                        break;
+                    case 39:
+                    pijltjestoets = 'Rechts';
+                        break;
+                    case 40:
+                    pijltjestoets = 'Omlaag';
+                        break;
+                }
+            document.getElementById("key").innerHTML = pijltjestoets;
+// ???
+            });
 
     
         </script>
-
     </body>
 </html>

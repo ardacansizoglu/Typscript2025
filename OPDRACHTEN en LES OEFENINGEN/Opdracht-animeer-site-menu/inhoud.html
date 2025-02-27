@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Events Animate Site Menu</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+        .container {
+            position: relative;
+            width: 100%;
+            display: none;
+        }
+
+        div#menu {
+            width: 150px;
+            left: -180px;
+            position: absolute;
+            z-index: 100;
+        }
+
+        div#menu ul li {
+            margin-bottom: 1px;   
+            position:center;
+            float: left; 
+        }
+
+        div#menu ul#unorderedList li a {
+            width: 150px;
+            height: 22px;
+            background-color: #00293E;
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px 0 0;
+            text-align: right;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #inhoud {
+            left: 50px;
+            position: absolute;
+            width: 500px;
+        }
+/* Ik heb toegevoegd */
+
+        .activated a {
+            color: #FFA500 !important; 
+            background-color: green !important;
+        }
+
+        .disactivated a {
+            color: #ffffff;
+            background-color: #00293E;
+        }
+        #title {
+            font-size: 60px;
+            font-weight: bold;
+            padding: 50px ;
+            margin-bottom: 10px;
+        }
+        .activated a {
+            color: #e32825 !important; 
+        }
+
+        .disactivated a {
+            color: #ffffff;
+        }
+        
+
+        #inhoud > div {
+            display: none; 
+            padding: 20px;
+            background-color: #f0f0f0;
+            margin-bottom: 10px;
+        }
+
+    </style>
+    </head>
+    <body>
+        <div id="container">
+            <div id="menu">
+                <ul id="unorderedList">
+                    <li class="activated"><a>1</a></li>
+                    <li class="disactivated"><a>2</a></li>
+                    <li class="disactivated"><a>3</a></li>
+                    <li class="disactivated"><a>4</a></li>
+                    <li class="disactivated"><a>5</a></li>
+                </ul>
+            </div>
+
+        <!-- <div id="title">JQUERY rocks the menu!</div> -->
+
+                <div id="inhoud">
+                    <div>
+                        <h1> Inhoud-1 </h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Nihil repellendus eligendi quod possimus a quae
+                            nemo,
+                            numquam dicta at eum quia nam? Cum sed ad id nobis
+                            harum
+                            alias quibusdam.</p>
+                    </div>
+
+                    <div>
+                        <h1>Inhoud-2</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Eius, rerum. Aliquid, perspiciatis? Quod, magnam! Id
+                            deleniti, nihil voluptatibus aperiam architecto
+                            perferendis, quidem minus atque illum, optio
+                            commodi.</p>
+                    </div>
+
+                    <div>
+                        <h1>Inhoud-3</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Nihil repellendus eligendi quod possimus a quae
+                            nemo,
+                            numquam dicta at eum quia nam? Cum sed ad id nobis
+                            harum
+                            alias quibusdam.</p>
+                    </div>
+
+                    <div>
+                        <h1>Inhoud-4</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Nihil repellendus eligendi quod possimus a quae
+                            nemo,
+                            numquam dicta at eum quia nam? Cum sed ad id nobis
+                            harum
+                            alias quibusdam.</p>
+                    </div>
+
+                    <div>
+                        <h1>Inhoud-5</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Nihil repellendus eligendi quod possimus a quae
+                            nemo,
+                            numquam dicta at eum quia nam? Cum sed ad id nobis
+                            harum
+                            alias quibusdam.</p>
+                    </div>
+
+                    <div>
+                        <h1>Inhoud-6</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit.
+                            Nihil repellendus eligendi quod possimus a quae
+                            nemo,
+                            numquam dicta at eum quia nam? Cum sed ad id nobis
+                            harum
+                            alias quibusdam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        $(document).ready(function() {
+            $('#container').fadeIn(1000);
+
+// Menu hover effect
+//De "menu" div wordt via css opgeschoven naar links, 
+// zodat enkel de nummer nog zichtbaar is
+
+            $('#menu li').hover( 
+                function() {
+
+                    $(this).animate({ left: '100px'}, slow);
+                    $(this).animate({ width: "100px"}, 500);
+                    $(this).animate({ heigt: "80px"}, 500);
+                },
+                function() {
+                    $(this).animate({ width: "80px"}, 500);
+                }
+            );
+
+        
+// Update menu classes
+// De "activated" class wordt via css opgeschoven naar links, 
+// zodat enkel de nummer zichtbaar is
+// De "disactivated" class wordt via css opgeschoven naar links, 
+// zodat de andere nummers verdwijnen
+// De "activated" en "disactivated" classes worden via css opgeschoven naar links,
+                
+                $('#menu li').click(function() {
+                    let index = $(this).index();
+                    $(this).addClass('activated').removeClass('disactivated')
+                        .siblings().addClass('disactivated').removeClass('activated');
+                        $('#inhoud > div').eq(index).slideDown()
+                    .siblings().hide();
+
+// Show corresponding content
+    // De "slideDown" effect zorgt ervoor dat de content van de geselecteerde menu nummer zichtbaar word
+
+//'inhoud' ID'sine sahip elementin içindeki tüm div'leri seçer
+//Yani içerik kutularımızın hepsini seçmiş oluyoruz
+
+//Seçilen div'ler arasından belirli bir sıradakini seçer
+//  .slideDown()=>Seçilen div'i aşağı doğru kayarak açar
+        //Yani animasyonlu bir şekilde görünür hale getirir
+//Seçilen div'in kardeşlerini (yani aynı seviyedeki diğer div'leri) seçer
+//Örnek: İkinci div seçiliyse, birinci ve üçüncü div'leri seçer                
+            
+            });
+        });
+    </script>
+    </body>
+</html>
