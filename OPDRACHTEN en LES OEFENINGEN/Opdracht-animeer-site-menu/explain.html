@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery rocks the menu!</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+            
+            #title {
+                font-size: 36px;
+                font-weight: bold;
+                margin-bottom: 50px;
+                padding: 30px;
+                text-align: left;
+            }
+            
+            .container {
+                position: relative;
+                width: 100%;
+                display: flex;
+            
+            }
+            
+            #menu-container {
+                width: 150px;
+                position: relative;
+                margin-top: 50px; 
+            }
+            
+            #menu {
+                position: absolute;
+                width: 30px;
+                left: 0;
+                z-index: 100;
+            }
+            
+            #menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            #menu ul li {
+                margin-bottom: 1px;
+                position: relative;
+                overflow: hidden;
+                width: 30px;
+                height: 30px;
+            }
+            
+            #menu ul li a {
+                width: 30px;
+                height: 30px;
+                background-color: #00293E;
+                color: white;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+                line-height: 30px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            
+            #menu ul li .menu-label {
+                position: absolute;
+                left: 30px;
+                top: 0;
+                height: 30px;
+                background-color: #b5d56a;
+                color: white;
+                line-height: 30px;
+                padding: 0 10px;
+                display: none;
+                white-space: nowrap;
+            }
+            #inhoud > div {
+                display: none;
+                margin-bottom: 20px;
+            }
+            
+            #inhoud > div h2 {
+                margin-top: 40px;
+            }
+            
+            .activated a {
+                background-color: #00293E !important;
+                color: #e32825 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="title">JQuery rocks the menu!</div>
+
+        <div class="container">
+            <div id="menu-container">
+                <div id="menu">
+                    <ul id="unorderedList">
+                        <li class="activated">
+                            <a>1</a>
+                            <div class="menu-label">Menu 1</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>2</a>
+                            <div class="menu-label">Menu 2</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>3</a>
+                            <div class="menu-label">Menu 3</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>4</a>
+                            <div class="menu-label">Menu 4</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>5</a>
+                            <div class="menu-label">Menu 5</div>
+                        </li>
+                        <li class="disactivated">
+                            <a>6</a>
+                            <div class="menu-label">Menu 6</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="inhoud">
+                <div>
+                    <h2>Inhoud 1</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        In nec nunc tellus. In ultricies suscipit mi nec porta.
+                        Maecenas faucibus commodo purus, quis adipiscing libero
+                        semper sit amet. Cras ultrices risus vitae nunc interdum
+                        blandit.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 2</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Eius, rerum. Aliquid, perspiciatis? Quod, magnam! Id
+                        deleniti, nihil voluptatibus aperiam architecto
+                        perferendis, quidem minus atque illum, optio
+                        commodi.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 3</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 4</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 5</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+                <div>
+                    <h2>Inhoud 6</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nihil repellendus eligendi quod possimus a quae nemo,
+                        numquam dicta at eum quia nam? Cum sed ad id nobis harum
+                        alias quibusdam.</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+    $(document).ready(function() {
+        // Ilk div i default gostermek icin
+        $('#inhoud > div').first().show();
+        
+        // Daha sonra menuyu harekelendir, Menu-hover-effect ile
+        $('#menu li').hover(
+            function() { // Mouse enter OLUNCA labellari bul
+                $(this).stop().animate({width: '150px'}, 500);
+                $(this).find('.menu-label').slideDown();
+            },
+            function() { // Fare ayrıldığında (sadece aktif değilse küçülür)
+                if (!$(this).hasClass('activated')) {
+                    $(this).stop().animate({width: '30px'}, 500);
+                    $(this).find('.menu-label').slideUp();
+                }
+            }
+        );
+
+        // CLICK EVENTS burdan basliyor
+        $('#menu li').click(function() {
+            // Ilk once "Reset all items" yapiyorsun
+            $('#menu li').stop().animate({width: '30px'}, 500);
+            $('#menu li .menu-label').slideUp();
+            
+            // Clicklenen itemi active etmek icin!
+            $(this).addClass('activated').removeClass('disactivated')
+                .siblings().addClass('disactivated').removeClass('activated');
+            
+            // Tıklanan öğeyi genişletmek icin CSS ile tekrar label bul
+            $(this).stop().animate({width: '150px'}, 300);
+            $(this).find('.menu-label').slideDown();
+            
+            // Tiklanan oge ile İlgili içeriği göstermek icin index kullanilacak
+            let index = $(this).index();
+            $('#inhoud > div').eq(index).slideDown()
+                .siblings().slideUp();
+        });
+    });
+</script>
+
+    </body>
+</html>

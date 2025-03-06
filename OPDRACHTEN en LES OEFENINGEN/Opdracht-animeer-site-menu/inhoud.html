@@ -17,13 +17,15 @@
                 font-size: 36px;
                 font-weight: bold;
                 margin-bottom: 50px;
+                padding: 30px;
+                text-align: left;
             }
             
             .container {
                 position: relative;
                 width: 100%;
                 display: flex;
-                min-height: 400px;
+            
             }
             
             #menu-container {
@@ -78,19 +80,18 @@
                 display: none;
                 white-space: nowrap;
             }
-            
-            #inhoud {
-                flex-grow: 1;
-                padding-left: 30px;
-            }
-            
+            /* #inhoud{
+                left:100px;
+                position: absolute;
+                width:500px;
+            } */
             #inhoud > div {
                 display: none;
                 margin-bottom: 20px;
             }
             
             #inhoud > div h2 {
-                margin-top: 0;
+                margin-top: 40px;
             }
             
             .activated a {
@@ -100,7 +101,7 @@
         </style>
     </head>
     <body>
-        <div id="title">jQuery rocks the menu!</div>
+        <div id="title">JQuery rocks the menu!</div>
 
         <div class="container">
             <div id="menu-container">
@@ -141,14 +142,7 @@
                         In nec nunc tellus. In ultricies suscipit mi nec porta.
                         Maecenas faucibus commodo purus, quis adipiscing libero
                         semper sit amet. Cras ultrices risus vitae nunc interdum
-                        blandit. Class aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per inceptos himenaeos. Vestibulum
-                        urna mi, venenatis eget porta in, mollis in eros. Etiam
-                        pretium sem id dui molestie dictum. Sed in nunc at risus
-                        porttitor venenatis. Pellentesque habitant morbi
-                        tristique senectus et netus et malesuada fames ac turpis
-                        egestas. Sed eu lectus vel velit consectetur aliquam.
-                        Quisque at orci vitae tellus porttitor malesuada.</p>
+                        blandit.</p>
                 </div>
                 <div>
                     <h2>Inhoud 2</h2>
@@ -190,45 +184,40 @@
         </div>
 
         <script>
-            $(document).ready(function() {
-// Ilk div i default gostermek icin
-                $('#inhoud > div').first().show();
-                
-//Daha sonra menuyu harekelendir, Menu-hover-effect ile
-                $('#menu li').hover(
-                    function() { ///ONEMLI!! mouse enter OLUNCA LABELLARI bul
-                        $(this).stop().animate({width: '150px'}, 300);
-                        $(this).find('.menu-label').show();
-                    },
-                    function() {
-//Fare ayrıldığında (sadece aktif değilse küçülür)
-                        if (!$(this).hasClass('activated')) {
-                            $(this).stop().animate({width: '30px'}, 300);
-                            $(this).find('.menu-label').hide();
-                        }
-                    }
-                );
-//CLICK EVENTS burdan basliyor              
+    $(document).ready(function() {
+        $('#inhoud > div').first().show(); //default div
+        
+        $('#menu li > a').hover(
+            function() { 
+                $(this).stop().animate({width: '150px'}, 500);
+                $(this).find('.menu-label').slideDown();
+            },
+            function() { 
+                if (!$(this).hasClass('activated')) {
+                    $(this).stop().animate({width: '30px'}, 500);
+                    $(this).find('.menu-label').slideUp();
+                }
+            }
+        );
+
+        // CLICK EVENTS 
+        $('#menu li').click(function() {
+            $('#menu li').stop().animate({width: '30px'}, 500);//reset all animations
+            $('#menu li .menu-label').slideUp();
+    
+            $(this).addClass('activated').removeClass('disactivated') 
+                .siblings().addClass('disactivated').removeClass('activated');
+
+            $(this).stop().animate({width: '150px'}, 300);
+            $(this).find('.menu-label').slideDown();
             
-                $('#menu li').click(function() {
-//Ilk once "Reset all items" yapiyorsun
-                    $('#menu li').stop().animate({width: '30px'}, 300);
-                    $('#menu li .menu-label').hide();
-                    
-// Click`lenen itemi active etmek icin!
-                    $(this).addClass('activated').removeClass('disactivated')
-                        .siblings().addClass('disactivated').removeClass('activated');
-                    
-// Tıklanan öğeyi genişletmek icin CSS ile tekrar label bul
-                    $(this).stop().animate({width: '150px'}, 300);
-                    $(this).find('.menu-label').show();
-                    
-// Tiklanan oge ile İlgili içeriği göstermek icin index kullanilacak
-                    let index = $(this).index();
-                    $('#inhoud > div').eq(index).fadeIn()
-                        .siblings().hide();
-                });
-            });
-        </script>
+            // Tiklanan oge ile İlgili içeriği göstermek icin index kullanilacak
+            let index = $(this).index();
+            $('#inhoud > div').eq(index).slideDown()
+                .siblings().slideUp();
+        });
+    });
+</script>
+
     </body>
 </html>

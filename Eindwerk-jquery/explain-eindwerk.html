@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wat is jouw sterrenbeeld?</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #5ba4a4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            display: none;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        #resultaat {
+            margin-top: 20px;
+        }
+        #sterrenbeeldNaam {
+            background-color: #5ba4a4;
+            color: white;
+            padding: 15px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        #sterrenbeeldAfbeelding {
+            max-width: 200px;
+            background: linear-gradient(to bottom right, #FFE5E5, #C6E3E3);
+            padding: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Wat is jouw sterrenbeeld?</h1>
+        <p>Geef de dag en maand van jouw geboortedatum in.</p>
+
+        <div class="form-group">
+            <label for="dag">Geboortedag:</label>
+            <input type="text" id="dag" placeholder="01">
+            <div id="dagFout" class="error">Voer een geldige dag in (1-31)</div>
+        </div>
+
+        <div class="form-group">
+            <label for="maand">Geboortemaand:</label>
+            <input type="text" id="maand" placeholder="04">
+            <div id="maandFout" class="error">Voer een geldige maand in
+                (1-12)</div>
+        </div>
+
+        <div class="buttons">
+            <button id="berekenKnop">Ontdek je sterrenbeeld</button>
+        </div>
+
+        <div id="resultaat" style="display:none;">
+            <div id="sterrenTitle">Jouw sterrenbeeld:</div>
+            <div id="sterrenbeeldNaam"></div>
+            <img id="sterrenbeeldAfbeelding" src alt="Sterrenbeeld">
+        </div>
+
+        <script>
+    $(document).ready(function() {
+    // Sıkça kullanılan DOM elemanları için değişkenler
+    //Bu değişkenler daha sonra başka işlemler veya manipülasyonlar yapmak için kullanılabilir.
+        const $dagInput = $('#dag'); // 'dag' ID'sine sahip olan HTML elemanına işaret eder.
+        const $maandInput = $('#maand'); // 'maand' ID'sine sahip olan HTML elemanına işaret eder.
+        const $dagFout = $('#dagFout'); // 'dagFout' ID'sine sahip olan HTML elemanına işaret eder.
+        const $maandFout = $('#maandFout'); // 'maandFout' ID'sine sahip olan HTML elemanına işaret eder.
+        const $resultaat = $('#resultaat'); // 'resultaat' ID'sine sahip olan HTML elemanına işaret eder.
+        const $sterrenbeeldNaam = $('#sterrenbeeldNaam'); // 'sterrenbeeldNaam' ID'sine sahip olan HTML elemanına işaret eder.
+        const $sterrenbeeldAfbeelding = $('#sterrenbeeldAfbeelding'); // 'sterrenbeeldAfbeelding' ID'sine sahip olan HTML elemanına işaret eder.
+        const $berekenKnop = $('#berekenKnop'); // 'berekenKnop' ID'sine sahip olan HTML elemanına işaret eder.
+});
+
+
+// Initialiseer booleans=>booleans olayini baslatmak(initialiseer) / dogrulamak icin 
+        let dagOk = false; //başlangıçta false olarak ayarlanır, cunku baslangicta  gün ve ay değerlerinin geçersiz olduğu varsayılır.
+        let maandOk = false;
+
+///Tooltip, kullanıcı bir giriş alanının üzerine geldiğinde veya odaklandığında (focus) görünen küçük bilgi kutucuklarıdır.
+        $dayInput.tooltip({
+            content:"Voer je geboortedag in (1-31)",
+        });
+        $monthInput.tooltip({
+            content:"Voer je geboortemaand in (1-12)",
+        });
+
+    
+        </script>
+    </body>
+</html>

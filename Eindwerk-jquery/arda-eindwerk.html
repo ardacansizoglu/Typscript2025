@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wat is jouw sterrenbeeld?</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #5ba4a4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            display: none;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        #resultaat {
+            margin-top: 40px;
+        }
+        #sterrenbeeldTitle{
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        #sterrenbeeldNaam {
+            font-size: 36px;
+            color: white;
+            background-color: #5ba4a4;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 150px;
+        }
+        #sterrenbeeldAfbeelding{
+            max-width: 400px;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .tooltip {
+            background-color: #5ba4a4;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Wat is jouw sterrenbeeld?</h1>
+        <p>Geef de dag en maand van jouw geboortedatum in.</p>
+
+        <div class="form-group">
+            <label for="dag">Geboortedag:</label>
+            <input type="text" id="dag" placeholder="01">
+            <div id="dagFout" class="error">Voer een geldige dag in (1-31)</div>
+        </div>
+
+        <div class="form-group">
+            <label for="maand">Geboortemaand:</label>
+            <input type="text" id="maand" placeholder="04">
+            <div id="maandFout" class="error">Voer een geldige maand in
+                (1-12)</div>
+        </div>
+
+        <div class="buttons">
+            <button id="berekenKnop">Ontdek je sterrenbeeld</button>
+        </div>
+
+        <div id="resultaat" style="display:none;">
+            <div id="sterrenTitle">Jouw sterrenbeeld:</div>
+            <div id="sterrenbeeldNaam"></div>
+            <img id="sterrenbeeldAfbeelding" src alt="Sterrenbeeld">
+        </div>
+
+        <script>
+    $(document).ready(function() {
+        const $dagInput = $('#dag'); // 'dag' ID'sine sahip olan HTML elemanına işaret eder.
+        const $maandInput = $('#maand'); 
+        const $dagFout = $('#dagFout'); 
+        const $maandFout = $('#maandFout'); 
+        const $resultaat = $('#resultaat'); 
+        const $sterrenbeeldNaam = $('#sterrenbeeldNaam');
+        const $sterrenbeeldAfbeelding = $('#sterrenbeeldAfbeelding'); 
+        const $berekenKnop = $('#berekenKnop'); 
+
+// Initialiseer booleans=>booleans olayini baslatmak(initialiseer) / dogrulamak icin 
+        let dagOk = false; 
+        let maandOk = false;
+
+///Tooltip, kullanıcı bir giriş alanının üzerine geldiğinde veya odaklandığında (focus) görünen küçük bilgi kutucuklarıdır.
+        $dayInput.tooltip({
+            content:"Voer je geboortedag in (1-31)",
+        });
+        $monthInput.tooltip({
+            content:"Voer je geboortemaand in (1-12)",
+        });
+    });
+
+// Amaç: Eğer kullanıcı, inputa tıkladığında içerik olarak sadece placeholder metni varsa (yani kullanıcı daha önce hiçbir şey yazmamışsa), bu içeriği boşaltır.
+        $dayInput.focus(function(){
+        if ($(this).val() === $(this).attr("placeholder")) {
+            $(this).val(""); //Giriş alanını temizler (boş yapar).
+        }
+    });
+        $monthInput.focus(function(){
+        if ($(this).val() === $(this).attr("placeholder")) {
+            $(this).val(""); //this=> monthInput
+        }
+    });
+// Amaç: Kullanıcı, input alanından çıktığında ve hiçbir şey yazmamışsa, placeholder metnini tekrar input alanına yazar.
+        $dayInput.blur(function(){
+            const day = $(this).val(); //this=> dayInput
+    //bos inputu kontrol etmek icin
+            if (day === "") {
+                $(this).css("border-color", "red");
+                $dayError.text("Dag mag niet leeg zijn").show();
+                dagOk = false;
+                return;    //this=> dayInput
+            }
+    //girilen degerin sayi olup olmadigini kontrol etmek icin
+            if (isNaN(dayValue)) {
+                $(this).css("border-color", "red");
+                $dayError.text("Geef je geboortedag in").show();
+                dagOk = false;
+                return;
+            }
+    //girilen degerin 1-31 arasinda olup olmadigini kontrol etmek icin
+            if (dayValue < 1 || dayValue > 31) {
+                $(this).css("border-color", "red");
+                $dayError.text("Dag moet tussen (1-31) zijn").show();
+                dagOk = false;
+                return;
+            }
+    //eger girilen deger 1-31 arasinda ise
+            $(this).css("border-color", "green");
+            $dayError.hide();
+            dagOk = true;
+
+        });
+
+
+
+    
+        </script>
+    </body>
+</html>
