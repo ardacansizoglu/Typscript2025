@@ -121,53 +121,111 @@
         let maandOk = false;
 
 ///Tooltip, kullanıcı bir giriş alanının üzerine geldiğinde veya odaklandığında (focus) görünen küçük bilgi kutucuklarıdır.
-        $dayInput.tooltip({
+        $dagInput.tooltip({
             content:"Voer je geboortedag in (1-31)",
         });
-        $monthInput.tooltip({
+        $$maandInput.tooltip({
             content:"Voer je geboortemaand in (1-12)",
         });
     });
 
 // Amaç: Eğer kullanıcı, inputa tıkladığında içerik olarak sadece placeholder metni varsa (yani kullanıcı daha önce hiçbir şey yazmamışsa), bu içeriği boşaltır.
-        $dayInput.focus(function(){
+        $dagInput.focus(function(){
         if ($(this).val() === $(this).attr("placeholder")) {
             $(this).val(""); //Giriş alanını temizler (boş yapar).
         }
     });
-        $monthInput.focus(function(){
+        $maandInput.focus(function(){
         if ($(this).val() === $(this).attr("placeholder")) {
             $(this).val(""); //this=> monthInput
         }
     });
 // Amaç: Kullanıcı, input alanından çıktığında ve hiçbir şey yazmamışsa, placeholder metnini tekrar input alanına yazar.
-        $dayInput.blur(function(){
-            const day = $(this).val(); //this=> dayInput
+        $dagInput.blur(function(){
+            const dag = $(this).val(); //this=> dayInput
     //bos inputu kontrol etmek icin
-            if (day === "") {
+            if (dag === "") {
                 $(this).css("border-color", "red");
-                $dayError.text("Dag mag niet leeg zijn").show();
+                $dagError.text("Dag mag niet leeg zijn").show();
                 dagOk = false;
                 return;    //this=> dayInput
             }
-    //girilen degerin sayi olup olmadigini kontrol etmek icin
-            if (isNaN(dayValue)) {
+//girilen degerin sayi olup olmadigini kontrol etmek icin
+            if (isNaN(dagValue)) {
                 $(this).css("border-color", "red");
-                $dayError.text("Geef je geboortedag in").show();
+                $dagError.text("Geef je geboortedag in").show();
                 dagOk = false;
                 return;
             }
-    //girilen degerin 1-31 arasinda olup olmadigini kontrol etmek icin
-            if (dayValue < 1 || dayValue > 31) {
+//girilen degerin 1-31 arasinda olup olmadigini kontrol etmek icin
+            if (dagValue < 1 || dagValue > 31) {
                 $(this).css("border-color", "red");
-                $dayError.text("Dag moet tussen (1-31) zijn").show();
+                $dagError.text("Dag moet tussen (1-31) zijn").show();
                 dagOk = false;
                 return;
             }
-    //eger girilen deger 1-31 arasinda ise
+//eger girilen deger 1-31 arasinda ise
             $(this).css("border-color", "green");
-            $dayError.hide();
+            $dagError.hide();
             dagOk = true;
+
+//ay kontrolu icin
+        $maandInput.blur(function() {
+            const maand = $(this).val();
+//Boş girişi kontrol edin
+        if (maand === "") {
+            $(this).css("border-color", "red");
+            $maandError.text("Geef je geboortemaand in").show();
+            maandOk = false;
+            return;
+        }
+//Girilen değerin sayı olup olmadığını kontrol edin
+        const maandValue = $(this).val();
+        if (isNaN(maandValue)) {
+            $(this).css("border-color", "red");
+            $maandError.text("Voer een nummer in").show();
+            maandOk = false;
+            return;
+        }
+//Girilen değerin 1-12 arasında olup olmadığını kontrol edin
+        if (maandValue < 1 || maandValue > 12) {
+            $(this).css("border-color", "red");
+            $maandError.text("Maand moet tussen (1-12) zijn").show();
+            maandOk = false;
+            return;
+        }
+//Eger derger gecerli deger ise
+        $(this).css("border-color", "green");
+        $maandError.hide();
+        maandOk = true;
+
+
+//da kullanıcının girdiği doğum günü ve ayını kontrol eder ve
+// ardından bir işlem gerçekleştirmeye devam eder. 
+        $berekenKnop.click(function(){
+//Eğer kullanıcı gün girmemişse, blur olayını tetikleyerek gün alanının doğrulama işlemini gerçekleştirir.
+            
+            if ($dagInput.val() === "") {
+                $dagInput.blur();
+            }
+//Eğer kullanıcı ay girmemişse, blur olayını tetikleyerek ay alanının doğrulama işlemini gerçekleştirir.
+            if ($maandInput.val() === "") {
+                $maandInput.blur();
+            }
+            if (dagOk && maandOk) { //Eğer gün ve ay girişleri geçerliyse, işlem devam eder.
+                const dag = parseInt($dagInput.val());
+                const maand = parseInt($maandInput.val());//Kullanıcıdan alınan gün ve ay değerleri, tamsayıya dönüştürülür.
+                let sterrenbeeld = "";
+                let afbeelding = "";
+                if ((maand == 3 && dag >= 21) || (maand == 4 && dag <= 19)) {
+                    sterrenbeeld = "Ram";
+                    afbeelding = "img/ram.jpg";
+              
+
+        }
+        });
+
+    });
 
         });
 
