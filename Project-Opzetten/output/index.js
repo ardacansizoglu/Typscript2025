@@ -63,3 +63,4 @@ function begroet3(naam, taal) {
 }
 console.log(begroet3("Arda")); // Outputs: "Hallo, Arda! (undefined)"
 console.log(begroet3("Arda", "Turks")); // Outputs: "Hallo, Arda! (Turks)"
+//# sourceMappingURL=index.js.map

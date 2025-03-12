@@ -55,3 +55,4 @@ let externeInput;
 externeInput = "Wat je wil intikken.";
 console.log(`Mijn data: ${mijnData}`);
 console.log(`Externe input: ${externeInput}`);
+//# sourceMappingURL=oef.js.map
