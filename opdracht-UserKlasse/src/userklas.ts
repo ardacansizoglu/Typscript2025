@@ -49,4 +49,5 @@ class User {
         const specialChars = "@#$%";   // Speciale tekens
 
 
-
+    }
+}
