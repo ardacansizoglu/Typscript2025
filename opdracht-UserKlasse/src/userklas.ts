@@ -41,13 +41,51 @@ class User {
     }
 
     private generatePassword(): string {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        const numbers = "0123456789";
+        const specialChars = "@#$%";
+        const allChars = letters + numbers + specialChars;
     
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";    // Alfabetische tekens (hoofdletters en kleine letters)
+        // Şifre başlangıcı için her türden bir karakter al
+        let password = [
+            letters[Math.floor(Math.random() * letters.length)],
+            numbers[Math.floor(Math.random() * numbers.length)],
+            specialChars[Math.floor(Math.random() * specialChars.length)],
+        ];
     
-        const numbers = "0123456789";  // Cijfers
-    
-        const specialChars = "@#$%";   // Speciale tekens
-
-
+        // Rastgele uzunlukta ek karakterler
+        const additionalLength = Math.floor(Math.random() * 6) + 5;
+        password = password.concat(
+            Array.from({ length: additionalLength }, () =>
+                allChars[Math.floor(Math.random() * allChars.length)]
+            )
+        );
+        return password.sort(() => Math.random() - 0.5).join('');      // Şifreyi karıştır ve string olarak dön
     }
 }
+
+    const user1 = new User("John", "Doe", "john.doe@example.com");
+    const user2 = new User("Jane", "Smith", "jane.smith@example.com");
+    
+    console.log("Log user info:");
+    user1.showUserInfo();
+    console.log("----------");
+    
+    console.log("Log user info:");
+    user2.showUserInfo();
+    console.log("----------");
+    
+    console.log("getFullName");
+    console.log(user1.getFullName());
+    console.log("----------");
+    
+    user1.resetPassword();
+    console.log("----------");
+    
+    
+
+
+
+
+
+        

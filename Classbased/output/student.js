@@ -11,15 +11,15 @@ class Student {
     get getMiddelde() {
         if (this._cijfers.length === 0)
             return 0;
-        const totaal = this._cijfers.reduce((accumulator, current) => accumulator + current, 0);
-        return parseFloat((totaal / this._cijfers.length).toFixed(2));
+        const totaal = this._cijfers.reduce((accumulator, current) => accumulator + current, 0); //reduce fonksiyonu
+        return parseFloat((totaal / this._cijfers.length).toFixed(2)); //2sayiyi topluyor  //acc and current variable
     }
     set setNaam(value) {
         if (value.trim() !== '') {
             this._naam = value;
         }
         else {
-            console.log("De naam mag niet leeg zijn.");
+            console.log("niet leeg zijn.");
         }
     }
     voegCijferToe(cijfer) {
