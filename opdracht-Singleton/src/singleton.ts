@@ -1,4 +1,4 @@
-class Logger { // uygulamanın her yerinde kullanılabilecek bir singleton yapıdadır.
+class Logger {            // uygulamanın her yerinde kullanılabilecek bir singleton yapıdadır.
     private static instance: Logger; //bu sinifin tekbir ornegini tutmak icin kullanilan statikm bir alan
 
     private constructor() {}//private olarak tanimlandi,bu sayede Logger sinifinin disindan yeni bir ornek olusTURULAMAZ!!
@@ -33,7 +33,7 @@ class Users {         //users klasse=> gebruikt de Logger Singleton en
     }
 }
 
-//=>> Test de implementatie
+//=>> Test
 const users1 = new Users("John Doe");
 users1.setName("Jane Doe");
 

@@ -20,4 +20,12 @@ class Users {
         this.name = name;
         this.logger.log(`Een nieuwe gebruiker met de naam ${this.name} is aangemaakt`);
     }
+    setName(newName) {
+        const oldName = this.name;
+        this.name = newName;
+        this.logger.log(`De gebruikersnaam is veranderd van ${oldName} naar ${this.name}.`);
+    }
 }
+//=>> Test
+const users1 = new Users("John Doe");
+users1.setName("Jane Doe");
