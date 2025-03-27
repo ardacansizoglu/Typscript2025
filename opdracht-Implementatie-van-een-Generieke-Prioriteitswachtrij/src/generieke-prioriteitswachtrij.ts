@@ -1,8 +1,8 @@
 // Define the QueueElement interface
 
 interface QueueElement<T> {
-    value: T;
-    priority: number;//ex:1-3, 1=>highest priority/ilk onem sirasi
+    value: T;                 //elemanin kendisi
+    priority: number;         //ex:1-3, 1=>highest priority/ilk onem sirasi
 }
 
 //implement the PRIORITYQueue class
@@ -20,14 +20,12 @@ enqueue(value: T, priority: number): void {
 for (let i = 0; i < this.elements.length; i++) {
     if (priority < this.elements[i].priority){
         //insert the element at the correct position
-    this.elements.splice(i, 0, newElement);
+    this.elements.splice(i, 0, newElement);  //elemanın önceliği mevcut elemanların önceliğinden düşükse, o pozisyona yerleştirilir
     added = true;
-    break;
     }
 
 }
- // If the element has the lowest priority (or the queue is empty),
-        // add it to the end of the array
+ // Eğer eleman en düşük önceliğe sahipse => onu dizinin sonuna ekle
         if (!added) {
             this.elements.push(newElement);
         }
@@ -40,8 +38,8 @@ for (let i = 0; i < this.elements.length; i++) {
         }
     }
 
-    // Remove and return the highest priority element
-    dequeue(): T | undefined {
+    // Remove and return 
+    dequeue(): T | undefined { //en yüksek önceliğe sahip elemanı kuyruktan çıkarır ve döndürür:
         if (this.isEmpty()) {
             return undefined;
         }
@@ -57,14 +55,16 @@ for (let i = 0; i < this.elements.length; i++) {
         return this.elements[0].value;
     }
 
-    // Check if the queue is empty
+    // Queue`nin  boş olup olmadığını kontrol eder:
     isEmpty(): boolean {
         return this.elements.length === 0;
     }
+
 }
 
-// Test the implementation
+// Test 
 const priorityQueue = new PriorityQueue<string>();
+
 priorityQueue.enqueue("Gamen", 3);
 priorityQueue.enqueue("TypeScript herhalen", 1);
 priorityQueue.enqueue("JavaScript herhalen", 2);
