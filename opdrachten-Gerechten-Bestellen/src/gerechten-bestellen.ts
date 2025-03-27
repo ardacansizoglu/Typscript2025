@@ -33,6 +33,7 @@ class MainCourse implements Dish {
         this.discountPercentage = discountPercentage;
         this.quantityForDiscount = quantityForDiscount;
     }
+}
 
 class Dessert implements Dish {
     name: string;
@@ -56,14 +57,54 @@ class Dessert implements Dish {
     }
 }
 
-function calculateTotalPrice(dishes: Dish[]):number //die een array van gerechten accepteert en de totale prijs berekent.
-       let totalPrice = 0 ;    //baslangicta yemek fiyati=>0  //Dish[]:yemek listesi
+function calculateTotalPrice(dishes: Dish[]): number { //die een array van gerechten accepteert en de totale prijs berekent.
+    let totalPrice = 0; //baslangicta yemek fiyati=>0
+
     
     dishes.forEach((dish) => {
         let pricePerGerecht = dish.price;
-        if(                       //dit is voor discount
-            dish.discountPercentage &&
-        )
-    }
+        let discountApplied = false;
+        
+        if (
+            // discount
+            dish.discountPercentage !== undefined &&
+            dish.quantityForDiscount !== undefined &&
+            dish.quantityOrdered >= dish.quantityForDiscount
+        ) {
+            // Apply discount!
+            pricePerGerecht = pricePerGerecht * (1 - dish.discountPercentage / 100);
+            discountApplied = true;
+        }
+        
+        // Calculate!! 
+        const dishTotal = pricePerGerecht * dish.quantityOrdered;
+        totalPrice += dishTotal;
+        
+        // Display dish information
+        console.log(`${dish.name} - ${dish.price.toFixed(2)}€`);
+        
+        if (discountApplied) {
+            console.log(`Discount of ${dish.discountPercentage}% applied on ${dish.name}`);
+        }
+        
+        console.log(`${pricePerGerecht.toFixed(2)}€ * ${dish.quantityOrdered} ordered = ${dishTotal.toFixed(2)}`);
+        console.log('---');
+    });
+    
+    console.log(`Total price: ${totalPrice.toFixed(2)}€`);
+    return totalPrice;
 }
 
+
+//Voorbeeldgebruik:
+const steak = new MainCourse('Steak', 18.99, 4, 10, 2); 
+const chickenCurry = new MainCourse('Chicken Curry', 12.99, 1);
+
+const chocolateCake = new Dessert('Chocolate Cake', 6.99, 4, 15, 3);
+const bananaMilkshake = new Dessert('Banana Milkshake', 4.99, 1);
+
+// []=>all dishes
+const allDishes: Dish[] = [steak, chickenCurry, chocolateCake, bananaMilkshake];
+
+
+calculateTotalPrice(allDishes);
